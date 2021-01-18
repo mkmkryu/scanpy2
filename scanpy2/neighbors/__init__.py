@@ -760,7 +760,7 @@ class Neighbors:
     def _compute_connectivities_diffmap(self, density_normalize=True):
         # init distances
         if self.knn:
-            Dsq = self._distances.power(2)
+            Dsq = self._distances.power(5)
             indices, distances_sq = _get_indices_distances_from_sparse_matrix(
                 Dsq, self.n_neighbors)
         else:
