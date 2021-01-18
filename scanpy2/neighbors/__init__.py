@@ -717,8 +717,8 @@ class Neighbors:
                     knn_indices, knn_distances, X.shape[0], n_neighbors)
             else:
                 self._distances = _distances
-            import pdb; pdb.set_trace() # 追加
         elif method == 'rapids':
+            
             knn_indices, knn_distances = compute_neighbors_rapids(X, n_neighbors)
         else:
             # non-euclidean case and approx nearest neighbors
@@ -728,6 +728,7 @@ class Neighbors:
             knn_indices, knn_distances, forest = compute_neighbors_umap(
                 X, n_neighbors, random_state, metric=metric, metric_kwds=metric_kwds)
             # very cautious here
+            import pdb; pdb.set_trace() # 追加
             try:
                 if forest:
                     self._rp_forest = _make_forest_dict(forest)
