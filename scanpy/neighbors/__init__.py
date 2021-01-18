@@ -717,7 +717,7 @@ class Neighbors:
                     knn_indices, knn_distances, X.shape[0], n_neighbors)
             else:
                 self._distances = _distances
-            # import pdb; pdb.set_trace() # 追加
+            import pdb; pdb.set_trace() # 追加
         elif method == 'rapids':
             
             knn_indices, knn_distances = compute_neighbors_rapids(X, n_neighbors)
@@ -823,8 +823,6 @@ class Neighbors:
             W = W.tocsr()
 
         self._connectivities = W
-
-        import pdb; pdb.set_trace() # 追加
 
     def compute_transitions(self, density_normalize: bool = True):
         """\
