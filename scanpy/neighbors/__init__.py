@@ -310,6 +310,7 @@ def _get_sparse_matrix_from_indices_distances_umap(knn_indices, knn_dists, n_obs
     cols = np.zeros((n_obs * n_neighbors), dtype=np.int64)
     vals = np.zeros((n_obs * n_neighbors), dtype=np.float64)
 
+    import pdb; pdb.set_trace() # 追加
     for i in range(knn_indices.shape[0]):
         for j in range(n_neighbors):
             if knn_indices[i, j] == -1:
