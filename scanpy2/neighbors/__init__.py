@@ -113,6 +113,7 @@ def neighbors(
     """
     start = logg.info('computing neighbors')
     adata = adata.copy() if copy else adata
+    import pdb; pdb.set_trace() # 追加
     if adata.is_view:  # we shouldn't need this here...
         adata._init_as_actual(adata.copy())
     neighbors = Neighbors(adata)
@@ -689,6 +690,7 @@ class Neighbors:
         `write_knn_indices==True`.
         """
         from sklearn.metrics import pairwise_distances
+        import pdb; pdb.set_trace() # 追加
         start_neighbors = logg.debug('computing neighbors')
         if n_neighbors > self._adata.shape[0]:  # very small datasets
             n_neighbors = 1 + int(0.5*self._adata.shape[0])
@@ -728,7 +730,6 @@ class Neighbors:
             knn_indices, knn_distances, forest = compute_neighbors_umap(
                 X, n_neighbors, random_state, metric=metric, metric_kwds=metric_kwds)
             # very cautious here
-            import pdb; pdb.set_trace() # 追加
             try:
                 if forest:
                     self._rp_forest = _make_forest_dict(forest)
