@@ -821,9 +821,10 @@ class Neighbors:
                     if i not in set(indices[j]):
                         W[j, i] = W[i, j]
             W = W.tocsr()
-            import pdb; pdb.set_trace() # 追加
 
         self._connectivities = W
+
+        import pdb; pdb.set_trace() # 追加
 
     def compute_transitions(self, density_normalize: bool = True):
         """\
