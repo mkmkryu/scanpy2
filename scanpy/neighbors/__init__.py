@@ -111,6 +111,7 @@ def neighbors(
         Instead of decaying weights, this stores distances for each pair of
         neighbors.
     """
+    import pdb; pdb.set_trace() # 追加
     start = logg.info('computing neighbors')
     adata = adata.copy() if copy else adata
     if adata.is_view:  # we shouldn't need this here...
