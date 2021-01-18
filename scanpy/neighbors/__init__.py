@@ -111,7 +111,6 @@ def neighbors(
         Instead of decaying weights, this stores distances for each pair of
         neighbors.
     """
-    import pdb; pdb.set_trace() # 追加
     start = logg.info('computing neighbors')
     adata = adata.copy() if copy else adata
     if adata.is_view:  # we shouldn't need this here...
@@ -690,7 +689,6 @@ class Neighbors:
         `write_knn_indices==True`.
         """
         from sklearn.metrics import pairwise_distances
-        import pdb; pdb.set_trace() # 追加
         start_neighbors = logg.debug('computing neighbors')
         if n_neighbors > self._adata.shape[0]:  # very small datasets
             n_neighbors = 1 + int(0.5*self._adata.shape[0])
