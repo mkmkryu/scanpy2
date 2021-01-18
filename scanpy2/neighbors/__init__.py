@@ -717,6 +717,7 @@ class Neighbors:
                     knn_indices, knn_distances, X.shape[0], n_neighbors)
             else:
                 self._distances = _distances
+            import pdb; pdb.set_trace() # 追加
         elif method == 'rapids':
             knn_indices, knn_distances = compute_neighbors_rapids(X, n_neighbors)
         else:
@@ -760,7 +761,7 @@ class Neighbors:
     def _compute_connectivities_diffmap(self, density_normalize=True):
         # init distances
         if self.knn:
-            Dsq = self._distances.power(5)
+            Dsq = self._distances.power(2)
             indices, distances_sq = _get_indices_distances_from_sparse_matrix(
                 Dsq, self.n_neighbors)
         else:
