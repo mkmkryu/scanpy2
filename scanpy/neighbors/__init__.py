@@ -707,6 +707,7 @@ class Neighbors:
         self.knn = knn
         X = _choose_representation(self._adata, use_rep=use_rep, n_pcs=n_pcs)
         # neighbor search
+        import pdb; pdb.set_trace() # 追加
         use_dense_distances = (metric == 'euclidean' and X.shape[0] < 8192) or knn == False
         if use_dense_distances:
             _distances = pairwise_distances(X, metric=metric, **metric_kwds)
