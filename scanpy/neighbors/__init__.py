@@ -674,6 +674,7 @@ class Neighbors:
         write_knn_indices: bool = False,
         metric: _Metric = 'euclidean',
         metric_kwds: Mapping[str, Any] = MappingProxyType({}),
+        r_data: str=None,
     ) -> None:
         """\
         Compute distances and connectivities of neighbors.
