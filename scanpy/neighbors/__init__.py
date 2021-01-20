@@ -3,6 +3,7 @@ from typing import Union, Optional, Any, Mapping, Callable, NamedTuple, Generato
 
 import numpy as np
 import scipy
+import pandas as pd
 from anndata import AnnData
 from scipy.sparse import issparse, coo_matrix, csr_matrix
 from sklearn.utils import check_random_state
@@ -47,6 +48,7 @@ def neighbors(
     metric_kwds: Mapping[str, Any] = MappingProxyType({}),
     key_added: Optional[str] = None,
     copy: bool = False,
+    r_data: str = None,    #引数が渡せる？
 ) -> Optional[AnnData]:
     """\
     Compute a neighborhood graph of observations [McInnes18]_.
@@ -711,6 +713,10 @@ class Neighbors:
         use_dense_distances = (metric == 'euclidean' and X.shape[0] < 8192) or knn == False
         if use_dense_distances:
             _distances = pairwise_distances(X, metric=metric, **metric_kwds)
+            # 追加箇所
+            if r_data != None:
+                _distances = compute_correct_distances(_distances)
+
             knn_indices, knn_distances = _get_indices_distances_from_dense_matrix(
                 _distances, n_neighbors)
             if knn:
@@ -1010,3 +1016,7 @@ class Neighbors:
         if self.iroot is not None and iroot != self.iroot:
             logg.warning(f'Changing index of iroot from {self.iroot} to {iroot}.')
         self.iroot = iroot
+
+    def compute_correct_distances(_distances):
+        pd.read_csv(self.r_data)
+        return _distances
