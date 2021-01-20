@@ -121,7 +121,7 @@ def neighbors(
     neighbors.compute_neighbors(
         n_neighbors=n_neighbors, knn=knn, n_pcs=n_pcs, use_rep=use_rep,
         method=method, metric=metric, metric_kwds=metric_kwds,
-        random_state=random_state,
+        random_state=random_state,r_data=r_data,
     )
 
     if key_added is None:
