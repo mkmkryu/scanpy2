@@ -148,6 +148,9 @@ def neighbors(
     if n_pcs is not None:
         neighbors_dict['params']['n_pcs'] = n_pcs
 
+    if r_data != None:
+        self.r_data = r_data  #変更
+
     adata.obsp[dists_key] = neighbors.distances
     adata.obsp[conns_key] = neighbors.connectivities
 
@@ -713,8 +716,9 @@ class Neighbors:
         use_dense_distances = (metric == 'euclidean' and X.shape[0] < 8192) or knn == False
         if use_dense_distances:
             _distances = pairwise_distances(X, metric=metric, **metric_kwds)
-            # 追加箇所
-            if r_data != None:
+
+            # 変更箇所
+            if self.r_data != None:
                 _distances = compute_correct_distances(_distances)
 
             knn_indices, knn_distances = _get_indices_distances_from_dense_matrix(
@@ -1018,5 +1022,5 @@ class Neighbors:
         self.iroot = iroot
 
     def compute_correct_distances(_distances):
-        pd.read_csv(self.r_data)
+        singleR = pd.read_csv(self.r_data)
         return _distances
