@@ -454,6 +454,11 @@ def _make_forest_dict(forest):
         d[prop]['data'] = dat
     return d
 
+    #変更箇所
+    def compute_correct_distances(_distances):
+        singleR = pd.read_csv(self.r_data)
+        return _distances
+
 
 class OnFlySymMatrix:
     """Emulate a matrix where elements are calculated on the fly.
@@ -1021,7 +1026,3 @@ class Neighbors:
         if self.iroot is not None and iroot != self.iroot:
             logg.warning(f'Changing index of iroot from {self.iroot} to {iroot}.')
         self.iroot = iroot
-
-    def compute_correct_distances(_distances):
-        singleR = pd.read_csv(self.r_data)
-        return _distances
