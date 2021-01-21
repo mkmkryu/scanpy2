@@ -418,8 +418,8 @@ def _get_indices_distances_from_dense_matrix(D, n_neighbors: int):
 
 
 #変更箇所
-def _compute_correct_distances(dist):
-    singleR = pd.read_csv(dist)
+def _compute_correct_distances(dist, r_data: str):
+    singleR = pd.read_csv(r_data)
     return dist
 
 
@@ -727,7 +727,7 @@ class Neighbors:
 
             # 変更箇所
             if r_data != None:
-                _distances = _compute_correct_distances(_distances)
+                _distances = _compute_correct_distances(_distances,r_data)
 
             knn_indices, knn_distances = _get_indices_distances_from_dense_matrix(
                 _distances, n_neighbors)
