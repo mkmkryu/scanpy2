@@ -719,7 +719,7 @@ class Neighbors:
             _distances = pairwise_distances(X, metric=metric, **metric_kwds)
 
             # 変更箇所
-            if self.r_data != None:
+            if r_data != None:
                 _distances = compute_correct_distances(_distances)
 
             knn_indices, knn_distances = _get_indices_distances_from_dense_matrix(
