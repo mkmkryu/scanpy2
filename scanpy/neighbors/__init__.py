@@ -417,6 +417,12 @@ def _get_indices_distances_from_dense_matrix(D, n_neighbors: int):
     return indices, distances
 
 
+#変更箇所
+def _compute_correct_distances(dist):
+    singleR = pd.read_csv(dist)
+    return dist
+
+
 def _backwards_compat_get_full_X_diffmap(adata: AnnData) -> np.ndarray:
     if 'X_diffmap0' in adata.obs:
         return np.c_[adata.obs['X_diffmap0'].values[:, None],
@@ -454,10 +460,6 @@ def _make_forest_dict(forest):
         d[prop]['data'] = dat
     return d
 
-    #変更箇所
-    def compute_correct_distances(_distances):
-        singleR = pd.read_csv(self.r_data)
-        return _distances
 
 
 class OnFlySymMatrix:
@@ -725,7 +727,7 @@ class Neighbors:
 
             # 変更箇所
             if r_data != None:
-                _distances = compute_correct_distances(_distances)
+                _distances = _compute_correct_distances(_distances)
 
             knn_indices, knn_distances = _get_indices_distances_from_dense_matrix(
                 _distances, n_neighbors)
