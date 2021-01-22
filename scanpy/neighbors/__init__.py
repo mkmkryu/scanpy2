@@ -426,7 +426,7 @@ def _compute_correct_distances(dist, r_data: str):
     for i in range(531):
         for j in range(531):
             if(mt.fabs(a[i] - a[j])!=0):
-                dist.iat[j,i] = dist.iat[j,i] / mt.fabs(a[i] - a[j])
+                dist[j,i] = dist[j,i] / mt.fabs(a[i] - a[j])
     import pdb; pdb.set_trace() # 追加
     return dist
 
