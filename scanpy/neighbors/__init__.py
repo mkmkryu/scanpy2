@@ -432,7 +432,7 @@ def _compute_correct_distances(dist, r_data: str):
     for i in range(count):
         for j in range(count):
             if mt.fabs(a[i] - a[j])!=0:
-                if a[i]<m and a[j] < m
+                if a[i]<m and a[j]<m:
                     continue
                 else:
                     dist[j,i] = dist[j,i] / mt.fabs(a[i] - a[j]) / 10
