@@ -148,8 +148,7 @@ def neighbors(
     if n_pcs is not None:
         neighbors_dict['params']['n_pcs'] = n_pcs
 
-    if r_data != None:
-        self.r_data = r_data  #変更
+
 
     adata.obsp[dists_key] = neighbors.distances
     adata.obsp[conns_key] = neighbors.connectivities
