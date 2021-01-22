@@ -422,11 +422,12 @@ def _compute_correct_distances(dist, r_data: str):
     import pdb; pdb.set_trace() # 追加
     singleR = pd.read_csv(r_data)
     singleR = singleR.drop(singleR.columns[[0]], axis=1)
-    a = singleR.mean(axis='columns')
+    a = singleR.mean(axis='columns') #平均
+    b = singleR.median(axis='columns') #中央値
     for i in range(531):
         for j in range(531):
-            if(mt.fabs(a[i] - a[j])!=0):
-                dist[j,i] = dist[j,i] / mt.fabs(a[i] - a[j])
+            if(mt.fabs(b[i] - b[j])!=0):
+                dist[j,i] = dist[j,i] / mt.fabs(b[i] - b[j]) / 10
     import pdb; pdb.set_trace() # 追加
     return dist
 
