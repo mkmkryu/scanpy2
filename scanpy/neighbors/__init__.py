@@ -420,14 +420,22 @@ def _get_indices_distances_from_dense_matrix(D, n_neighbors: int):
 #変更箇所
 def _compute_correct_distances(dist, r_data: str):
     import pdb; pdb.set_trace() # 追加
+    m=0
+    count = 531
     singleR = pd.read_csv(r_data)
     singleR = singleR.drop(singleR.columns[[0]], axis=1)
     a = singleR.mean(axis='columns') #平均
     b = singleR.median(axis='columns') #中央値
-    for i in range(531):
-        for j in range(531):
-            if(mt.fabs(b[i] - b[j])!=0):
-                dist[j,i] = dist[j,i] / mt.fabs(b[i] - b[j]) / 10
+    for x in range(count):
+        m = m + a[x] 
+    m = m/count
+    for i in range(count):
+        for j in range(count):
+            if mt.fabs(a[i] - a[j])!=0:
+                if a[i]<m and a[j] < m
+                    continue
+                else:
+                    dist[j,i] = dist[j,i] / mt.fabs(a[i] - a[j]) / 10
     import pdb; pdb.set_trace() # 追加
     return dist
 
