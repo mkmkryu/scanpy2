@@ -418,7 +418,14 @@ def _get_indices_distances_from_dense_matrix(D, n_neighbors: int):
 
 #変更箇所
 def _compute_correct_distances(dist, r_data: str):
+    import pdb; pdb.set_trace() # 追加
     singleR = pd.read_csv(r_data)
+    singleR = singleR.drop(singleR.columns[[0]], axis=1)
+    a = singleR.mean(axis='columns')
+    for i in range(531):
+        for j in range(531):
+            if(mt.fabs(a[i] - a[j])!=0):
+                dist.iat[j,i] = dist.iat[j,i] / mt.fabs(a[i] - a[j])
     return dist
 
 
@@ -735,7 +742,6 @@ class Neighbors:
                     knn_indices, knn_distances, X.shape[0], n_neighbors)
             else:
                 self._distances = _distances
-            import pdb; pdb.set_trace() # 追加
         elif method == 'rapids':
             
             knn_indices, knn_distances = compute_neighbors_rapids(X, n_neighbors)
