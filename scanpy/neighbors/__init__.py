@@ -4,6 +4,7 @@ from typing import Union, Optional, Any, Mapping, Callable, NamedTuple, Generato
 import numpy as np
 import scipy
 import pandas as pd
+import math as mt
 from anndata import AnnData
 from scipy.sparse import issparse, coo_matrix, csr_matrix
 from sklearn.utils import check_random_state
@@ -426,6 +427,7 @@ def _compute_correct_distances(dist, r_data: str):
         for j in range(531):
             if(mt.fabs(a[i] - a[j])!=0):
                 dist.iat[j,i] = dist.iat[j,i] / mt.fabs(a[i] - a[j])
+    import pdb; pdb.set_trace() # 追加
     return dist
 
 
