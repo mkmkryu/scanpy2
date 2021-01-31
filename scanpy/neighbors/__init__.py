@@ -421,21 +421,26 @@ def _get_indices_distances_from_dense_matrix(D, n_neighbors: int):
 def _compute_correct_distances(dist, r_data: str):
     import pdb; pdb.set_trace() # 追加
     m=0
-    count = 1561   #細胞の数
+    cell = 1561   #細胞の数
+    sim = 157  #参照した細胞データベースの数
     singleR = pd.read_csv(r_data)
     # singleR = singleR.drop(singleR.columns[[0]], axis=1)
-    a = singleR.mean(axis='columns') #平
-    b = singleR.median(axis='columns') #中央値
-    for x in range(count):
+    a = singleR.mean(axis='columns') #各細胞の類似度の平均
+    b = singleR.median(axis='columns') #各細胞の類似度の中央値
+    c = singleR.T.mean(axis='columns')#各類似度の平均
+    for x in range(cell):
         m = m + a[x+1]
-    m = m/count
-    for i in range(count):
-        for j in range(count):
+    m = m/cell
+    for i in range(cell):
+        for j in range(cell):
             if mt.fabs(a[i+1] - a[j+1])!=0:
-                if a[i+1]<m and a[j+1]<m:
-                    continue
-                else:
-                    dist[j,i] = dist[j,i] / mt.fabs(a[i+1] - a[j+1]) / 10
+                # if a[i+1]<m and a[j+1]<m:
+                #     continue
+                # else:
+                #     dist[j,i] = dist[j,i] / mt.fabs(a[i+1] - a[j+1]) / 10
+                for n in range(sim):
+                    if singleR.iat[i,n]>c[n] and singleR.iat[j,n]>c[n]:
+                        dist[j,i] = dist[j,i]*1.5
     import pdb; pdb.set_trace() # 追加
     return dist
 
