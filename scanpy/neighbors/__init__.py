@@ -434,13 +434,11 @@ def _compute_correct_distances(dist, r_data: str):
     for i in range(cell):
         for j in range(cell):
             if mt.fabs(a[i+1] - a[j+1])!=0:
-                # if a[i+1]<m and a[j+1]<m:
-                #     continue
-                # else:
-                #     dist[j,i] = dist[j,i] / mt.fabs(a[i+1] - a[j+1]) / 10
-                for n in range(sim):
-                    if singleR.iat[i,n]>c[n] and singleR.iat[j,n]>c[n]:
-                        dist[j,i] = dist[j,i]*1.5
+                if a[i+1]>m and a[j+1]>m:
+                    dist[j,i] = dist[j,i] * 1.25 
+                # for n in range(sim):
+                #     if singleR.iat[i,n]>c[n] and singleR.iat[j,n]>c[n]:
+                #         dist[j,i] = dist[j,i]*1.5
     import pdb; pdb.set_trace() # 追加
     return dist
 
