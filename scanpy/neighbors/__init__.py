@@ -421,7 +421,7 @@ def _get_indices_distances_from_dense_matrix(D, n_neighbors: int):
 def _compute_correct_distances(dist, r_data: str):
     import pdb; pdb.set_trace() # 追加
     m=0
-    count = 1561   #細胞の数
+    count = 1560   #細胞の数
     singleR = pd.read_csv(r_data)
     singleR = singleR.drop(singleR.columns[[0]], axis=1)
     a = singleR.mean(axis='columns') #平
