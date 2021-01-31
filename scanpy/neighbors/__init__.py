@@ -426,16 +426,16 @@ def _compute_correct_distances(dist, r_data: str):
     singleR = singleR.drop(singleR.columns[[0]], axis=1)
     a = singleR.mean(axis='columns') #平
     b = singleR.median(axis='columns') #中央値
-    for x in range(count-1):
+    for x in range(count):
         m = m + a[x+1]
     m = m/count
     for i in range(count):
         for j in range(count):
-            if mt.fabs(a[i] - a[j])!=0:
-                if a[i]<m and a[j]<m:
+            if mt.fabs(a[i+1] - a[j+1])!=0:
+                if a[i+1]<m and a[j+1]<m:
                     continue
                 else:
-                    dist[j,i] = dist[j,i] / mt.fabs(a[i] - a[j]) / 10
+                    dist[j,i] = dist[j,i] / mt.fabs(a[i+1] - a[j+1]) / 10
     import pdb; pdb.set_trace() # 追加
     return dist
 
