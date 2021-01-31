@@ -423,7 +423,7 @@ def _compute_correct_distances(dist, r_data: str):
     m=0
     count = 1561   #細胞の数
     singleR = pd.read_csv(r_data)
-    singleR = singleR.drop(singleR.columns[[0]], axis=1)
+    # singleR = singleR.drop(singleR.columns[[0]], axis=1)
     a = singleR.mean(axis='columns') #平
     b = singleR.median(axis='columns') #中央値
     for x in range(count):
