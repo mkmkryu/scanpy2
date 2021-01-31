@@ -435,7 +435,7 @@ def _compute_correct_distances(dist, r_data: str):
         for j in range(cell):
             if mt.fabs(a[i+1] - a[j+1])!=0:
                 if a[i+1]>m and a[j+1]>m:
-                    dist[j,i] = dist[j,i] * 1.25 
+                    dist[j,i] = dist[j,i] * 1.5 
                 # for n in range(sim):
                 #     if singleR.iat[i,n]>c[n] and singleR.iat[j,n]>c[n]:
                 #         dist[j,i] = dist[j,i]*1.5
