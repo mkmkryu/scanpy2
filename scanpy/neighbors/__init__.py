@@ -50,7 +50,7 @@ def neighbors(
     key_added: Optional[str] = None,
     copy: bool = False,
     r_data: str = None,    #引数が渡せる？
-    param: int = 1,
+    param: float = 1.0,
 ) -> Optional[AnnData]:
     """\
     Compute a neighborhood graph of observations [McInnes18]_.
@@ -419,7 +419,7 @@ def _get_indices_distances_from_dense_matrix(D, n_neighbors: int):
 
 
 #変更箇所
-def _compute_correct_distances(dist, r_data: str,param: int):
+def _compute_correct_distances(dist, r_data: str,param: float):
     import pdb; pdb.set_trace() # 追加
     m=0
     cell = 1561   #細胞の数
@@ -703,7 +703,7 @@ class Neighbors:
         metric: _Metric = 'euclidean',
         metric_kwds: Mapping[str, Any] = MappingProxyType({}),
         r_data: str=None,
-        param: int=1,
+        param: float=1.0,
     ) -> None:
         """\
         Compute distances and connectivities of neighbors.
