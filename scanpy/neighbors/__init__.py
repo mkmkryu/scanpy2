@@ -425,7 +425,7 @@ def _compute_correct_distances(dist, r_data: str,param: float):
     cell = 1561   #細胞の数
     sim = 157  #参照した細胞データベースの数
     singleR = pd.read_csv(r_data)
-    # singleR = singleR.drop(singleR.columns[[0]], axis=1)
+    singleR = singleR.drop(singleR.columns[[0]], axis=1)
     a = singleR.mean(axis='columns') #各細胞の類似度の平均
     b = singleR.median(axis='columns') #各細胞の類似度の中央値
     c = singleR.T.mean(axis='columns')#各類似度の平均
