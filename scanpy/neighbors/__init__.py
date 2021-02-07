@@ -50,7 +50,8 @@ def neighbors(
     key_added: Optional[str] = None,
     copy: bool = False,
     r_data: str = None,    #引数が渡せる？
-    param: float = 1.0,
+    param1: float = 1.0,
+    param2: float = 1.0,
 ) -> Optional[AnnData]:
     """\
     Compute a neighborhood graph of observations [McInnes18]_.
@@ -123,7 +124,7 @@ def neighbors(
     neighbors.compute_neighbors(
         n_neighbors=n_neighbors, knn=knn, n_pcs=n_pcs, use_rep=use_rep,
         method=method, metric=metric, metric_kwds=metric_kwds,
-        random_state=random_state,r_data=r_data,param=param
+        random_state=random_state,r_data=r_data,param1=param1,param2=param2
     )
 
     if key_added is None:
@@ -419,7 +420,7 @@ def _get_indices_distances_from_dense_matrix(D, n_neighbors: int):
 
 
 #変更箇所
-def _compute_correct_distances(dist, r_data: str,param: float):
+def _compute_correct_distances(dist, r_data: str,param1: float,param2: float):
     import pdb; pdb.set_trace() # 追加
     m=0
     cell = 1561   #細胞の数
@@ -436,7 +437,9 @@ def _compute_correct_distances(dist, r_data: str,param: float):
         for j in range(cell):
             if mt.fabs(a[i+1] - a[j+1])!=0:
                 if a[i+1]>m and a[j+1]>m:
-                    dist[j,i] = dist[j,i] * param
+                    dist[j,i] = dist[j,i] * param1
+                elif a[i+1]<m and a[j+1]<m:
+                    dist[j,i] = dist[j,i] * param2
                 # for n in range(sim):
                 #     if singleR.iat[i,n]>c[n] and singleR.iat[j,n]>c[n]:
                 #         dist[j,i] = dist[j,i]*1.5
@@ -703,7 +706,8 @@ class Neighbors:
         metric: _Metric = 'euclidean',
         metric_kwds: Mapping[str, Any] = MappingProxyType({}),
         r_data: str=None,
-        param: float=1.0,
+        param1: float=1.0,
+        param2: float=1.0,
     ) -> None:
         """\
         Compute distances and connectivities of neighbors.
@@ -749,7 +753,7 @@ class Neighbors:
 
             # 変更箇所
             if r_data != None:
-                _distances = _compute_correct_distances(_distances,r_data,param)
+                _distances = _compute_correct_distances(_distances,r_data,param1,param2)
 
             knn_indices, knn_distances = _get_indices_distances_from_dense_matrix(
                 _distances, n_neighbors)
